@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <!-- Incluye los estilos de Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      /* Centra horizontalmente */
+      align-items: center;
+      /* Centra verticalmente */
+      height: 100vh;
+      /* Ajusta la altura según el tamaño de la ventana */
+    }
+
+    .grid-menu {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 40px;
+      /* Separación entre los elementos de la cuadrícula */
+      padding: 20px;
+    }
+
+    .grid-item {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f0f0f057;
+      /* Color de fondo */
+      transition: background-color 0.3s ease;
+
+      a {
+        cursor: pointer;
+        text-decoration: auto;
+      }
+    }
+
+    .grid-item:hover {
+      background-color: #f0f0f066;
+    }
+
+    .grid-item i {
+      font-size: 3em;
+      color: #3a90ec;
+
+    }
+
+    .grid-item p {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #2a3172;
+      font-weight: bold;
+      font-family: system-ui;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="grid-menu">
+      <div class="grid-item">
+        <i class="fas fa-clipboard"></i> <!-- Icono de dólar -->
+        <p>Cotizaciones</p>
+      </div>
+      <div class="grid-item">
+        <i class="fas fa-cash-register"></i> <!-- Icono de dólar -->
+        <p>Ventas</p>
+      </div>
+      <div class="grid-item">
+        <i class="fas fa-dollar-sign"></i> <!-- Icono de dólar -->
+        <p>Pagos </p>
+      </div>
+      <div class="grid-item">
+        <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito de compras -->
+        <p>Pedidos</p>
+      </div>
+      <div class="grid-item">
+        <a href="clientes.html"> <!-- Enlace a la página clientes.html -->
+          <i class="fas fa-users"></i> <!-- Icono de usuarios -->
+          <p>Clientes</p>
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <i class="fas fa-link"></i> <!-- Icono de anillo -->
+        <p>Anillos</p>
+      </div>
+      <div class="grid-item">
+        <i class="fas fa-box"></i> <!-- Icono de caja -->
+        <p>Bultos</p>
+      </div>
+      <!-- Agrega más elementos de grid-item según sea necesario -->
+    </div>
+  </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Función para realizar la búsqueda
+        function buscar() {
+            const numeroInput = document.getElementById('numeroInput').value;
+            if (numeroInput === '') {
+                document.getElementById('noDataMessage').style.display = 'block';
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('userData').innerHTML = ''; // Limpiar la tabla
+                document.getElementById('dateContainer').style.display = 'none'; // Ocultar el contenedor de fechas
+                return;
+            }
+
+            document.getElementById('noDataMessage').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('loadingText').style.display = 'block';
+
+            const username = 'a2aa07aafartwetsdAD52356FEDGeOGzcI1LpNLgnAgGWs8TB.CEmLZGyswO';
+            const password = 'o2ao07oafartwetsdAD52356FEDGeIqLxO4trHmT00zCSAgi8jyCM4nfOXIq';
+
+            const url = `https://pedidosventas.materialessoto.com/clientes//20/1`;
+
+            const credentials = Buffer.from(`${username}:${password}`, 'utf8').toString('base64');
+
+            // Realizar la solicitud GET con autenticación básica
+            axios.get(url, {
+                headers: {
+                    'Authorization': `Basic ${credentials}`
+                }
+            })
+                .then(response => {
+                    const users = response.data;
+                    console.log(response);
+                    const dateIni = response.data?.fIni;
+                    const dateFin = response.data?.fFin;
+                    const userData = document.getElementById('userData');
+                    const dateContainer = document.getElementById('dateContainer');
+
+                    // Mostrar fechas inicial y final
+                    document.getElementById('startDate').textContent = dateIni;
+                    document.getElementById('endDate').textContent = dateFin;
+
+                    // Mostrar el contenedor de fechas
+                    dateContainer.style.display = 'block';
+
+                    userData.innerHTML = ''; // Limpiar la tabla antes de agregar los nuevos datos
+
+                    // Función para convertir la asistencia en símbolos
+                    function convertirAsistencia(asistencia) {
+                        if (asistencia === "asistencia") {
+                            return "*"; // Asterisco para asistencia
+                        } else if (asistencia === "falta") {
+                            return "✗"; // Tache para falta
+                        } else {
+                            return ""; // Vacío para otro caso
+                        }
+                    }
+
+                    // Llenar la tabla con los datos de asistencia
+                    users?.data.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                                <td>${user.nombre}</td>
+                                <td class="${user.d1}">${convertirAsistencia(user.d1)}</td>
+                                <td class="${user.d2}">${convertirAsistencia(user.d2)}</td>
+                                <td class="${user.d3}">${convertirAsistencia(user.d3)}</td>
+                                <td class="${user.d4}">${convertirAsistencia(user.d4)}</td>
+                                <td class="${user.d5}">${convertirAsistencia(user.d5)}</td>
+                                <td class="${user.d6}">${convertirAsistencia(user.d6)}</td>
+                            `;
+                        userData.appendChild(row);
+                    });
+
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('loadingText').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error al consumir la API:', error);
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('loadingText').style.display = 'none';
+                    document.getElementById('noDataMessage').style.display = 'block';
+                    document.getElementById('dateContainer').style.display = 'none'; // Ocultar el contenedor de fechas
+                });
+        }
+    </script>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+<!-- Incluir estilos CSS de Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Estilos personalizados para el navbar -->
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1039;
+        height: 70px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 14px rgba(204, 204, 204, 0.25);
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: #2E37A4;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navbar a:hover {
+        background-color: #f0efef;
+        color: rgb(6, 0, 114);
+    }
+
+    .navbar .icon {
+        float: right;
+    }
+
+
+
+    .container {
+        display: flex;
+        margin-top: 70px;
+        justify-content: center;
+        min-height: 818px;
+        BACKGROUND: #f4f4f5;
+    }
+
+
+    .boX1 {
+        padding: 20px;
+        margin-right: 19PX;
+        width: 600px;
+        height: 710PX;
+        MARGIN-TOP: 18px;
+        background: white;
+        border-radius: 11px;
+
+        .title {
+            margin-bottom: 5px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+    }
+
+    .box {
+        padding: 20px;
+        width: 524px;
+        padding: 20px;
+
+        height: 329PX;
+        margin-top: 18px;
+        background: white;
+        border-radius: 11px;
+
+        .title {
+            margin-bottom: 5px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    }
+
+    .box3 {
+        padding: 20px;
+        width: 524px;
+        padding: 20px;
+        height: 329PX;
+        margin-top: 12px;
+        background: white;
+        border-radius: 11px;
+
+        .title {
+            margin-bottom: 5px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    }
+
+    /* Estilos para la tabla */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+
+
+    <a href="#" class="icon">
+        <i class="fas fa-user"></i>
+    </a>
+    <a href="#logout" class="icon">
+        <i class="fas fa-sign-out-alt"></i>
+    </a>
+</div>
+
+<div class="container">
+
+    <div class="boX1">
+        <p class="title">Clientes</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Juan Pérez</td>
+                    <td>juan@example.com</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Maria López</td>
+                    <td>maria@example.com</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="boxDir">
+        <div class="box">
+            <p class="title">Telefonos</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>123456789</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>987654321</td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="box3">
+            <p class="title">Direcciones</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>123456789</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>987654321</td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
